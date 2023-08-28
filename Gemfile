@@ -73,12 +73,12 @@ end
 
 gem 'rubocop', '>= 1.0', '< 2.0'
 
-gem 'bulma-rails'
+gem 'bulma-rails', '~> 0.6.1'
 gem 'simple_form'
 gem 'devise'
 gem 'gravatar_image_tag'
 gem 'jquery-rails'
 gem "wysiwyg-rails"
-gem 'public_activity'
+gem 'public_activity', '~> 1.5'
 gem 'pg'
 gem "figaro"
