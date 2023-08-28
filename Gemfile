@@ -82,3 +82,4 @@ gem "wysiwyg-rails"
 gem 'public_activity', '~> 1.5'
 gem 'pg'
 gem "figaro"
+gem 'sassc'
