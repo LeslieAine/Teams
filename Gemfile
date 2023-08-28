@@ -70,3 +70,15 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+gem 'rubocop', '>= 1.0', '< 2.0'
+
+gem 'bulma-rails'
+gem 'simple_form'
+gem 'devise'
+gem 'gravatar_image_tag'
+gem 'jquery-rails'
+gem "wysiwyg-rails"
+gem 'public_activity'
+gem 'pg'
+gem "figaro"
