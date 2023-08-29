@@ -1,4 +1,5 @@
 # README
+Teams is a project management web app for teams working together
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
