@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  resources :projects
+  resources :teams
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  as :user do
+    patch '/user/confirmation' => 'user/confirmations#update', :via => :patch, :as => :update_user_confirmation
+  end
+
+  devise_for :users, controllers: {
+    registrations: 'registrations',
+    confirmation: 'confirmations'
+  }
+  root 'home#index'
 end
