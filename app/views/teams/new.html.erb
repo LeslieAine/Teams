@@ -1,9 +1,31 @@
-<h1>New team</h1>
+<section class='section'>
+<%= content_tag :div,
+  id: 'team-form',
+  data: {
+    id: @team.id,
+    team: @team.to_json(except: [:id, :created_at, :update_at]),
+    users_attributes: @team.users.to_json(except: [:created_at, :update_at])
+  } do %>
 
-<%= render "form", team: @team %>
+  <div class='column is-5'>
+    <h1 class='subtitle is-2'>Create a new team</h1>
+    <%= render "form", team: @team %>
+  </div>
+  <div class='column is-5'>
+    <h2 class='subtitle is-3'>Team name</h2>
+    <table class='table is-full-width'>
+      <thead>
+        <th>Name</th>
+        <th>Email</th>
+      </thead>
+      <tr>
+        <td>User Name</td>
+        <td>User Email</td>
+      </tr>
+    </table>
+    </div>
+  </div>
 
-<br>
+<% end %>
 
-<div>
-  <%= link_to "Back to teams", teams_path %>
-</div>
+</section>

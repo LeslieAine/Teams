@@ -10,5 +10,10 @@ Rails.application.routes.draw do
     registrations: 'registrations',
     confirmation: 'confirmations'
   }
+
+  devise_scope :user do  
+    get '/users/sign_out' => 'devise/sessions#destroy'     
+ end
+ 
   root 'home#index'
 end

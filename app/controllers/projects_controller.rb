@@ -1,9 +1,10 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: %i[show edit update destroy]
+  before_action :authenticate_user!, only: [:edit, :update, :destroy]
 
   # GET /projects or /projects.json
   def index
-    @projects = Project.all
+    @projects = Project.all.order('created_at DESC')
   end
 
   # GET /projects/1 or /projects/1.json
@@ -11,15 +12,18 @@ class ProjectsController < ApplicationController
 
   # GET /projects/new
   def new
-    @project = Project.new
+    @project = current_user.projects.build
+    @team = Team.where('id=?', current_user.team_id)
   end
 
   # GET /projects/1/edit
-  def edit; end
+  def edit 
+    @teams = current_user.teams
+  end
 
   # POST /projects or /projects.json
   def create
-    @project = Project.new(project_params)
+    @project = current_user.projects.build(project_params)
 
     respond_to do |format|
       if @project.save
@@ -50,7 +54,7 @@ class ProjectsController < ApplicationController
     @project.destroy
 
     respond_to do |format|
-      format.html { redirect_to projects_url, notice: 'Project was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'Project was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -64,6 +68,6 @@ class ProjectsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def project_params
-    params.require(:project).permit(:name, :description)
+    params.require(:project).permit(:name, :description, :team_id)
   end
 end
